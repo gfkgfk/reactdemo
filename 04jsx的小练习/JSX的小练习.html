@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+    <style>
+        .all {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- id为test的容器 -->
+    <div id="test">
+    </div>
+
+    <!-- 
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+
+
+    <!-- 引入react核心库-->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel"> //此处必须写babel
+        const data=['Angular','React','Vue']
+        //1.创建虚拟dom
+        const VDOM = (
+            <div>
+                <div>前端JS框架</div>
+                <ul>
+                    {
+                        data.map((item,index)=>{
+                            return <li key={index}>{item}</li>
+                        })
+                    }
+                </ul>
+            </div>
+
+        )
+
+        //2.渲染虚拟dom到页面
+        ReactDOM.render(VDOM, document.getElementById('test'))
+
+        /*
+            JSX语法规则
+            8.注意js语句与js表达式的区别；{}只支持写表达式（变量，方法），不能写语句（if，for，foreach...）
+            9.注意循环<li>标签中的key,这个key是虚拟dom进行diffing算法对比的唯一标识，因此这里需要加上index索引进行标记，其实这样也不严谨，也有问题，后面会讲这个问题应该怎么处理。
+        */
+
+
+
+    </script>
+
+</body>
+
+</html>

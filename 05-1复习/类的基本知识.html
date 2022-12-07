@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的基本知识</title>
+    </style>
+</head>
+
+<body>
+    <!-- id为test的容器 -->
+    <div id="test">
+    </div>
+
+    <!-- 引入react核心库-->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel"> //此处必须写babel
+        class Person {
+            //构造器方法
+            constructor(name,age){
+                //this->类的实例对象
+                this.name = name
+                this.age = age
+            }
+            speak(){
+                //打印出来后speak方法放在那里了？类的原型对象上，供实例使用
+                //通过person实例调用speak时，speak中的this就是Person实例
+                console.log(`我叫${this.name},我年龄${this.age}`);
+            }
+        }
+        const person = new Person('tom',18)
+        const person2 = new Person('jerry',19)
+        const person3 = new Person()
+        console.log(person);
+        console.log(person2);
+        console.log(person3);
+
+        person.speak()
+        person2.speak()
+
+
+        class Student extends Person{
+
+        }
+
+        const s1 = new Student('小张',12)
+        console.log(s1);
+
+        
+    </script>
+
+</body>
+
+</html>
