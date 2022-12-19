@@ -21,7 +21,7 @@
     <!-- 引入babel 用于将jsx转为js -->
     <script src="../js/babel.min.js"></script>
 
-    <script type="text/babel"> //此处必须写babel
+    <script type="text/babel"> //此处必须写babel,(使用;babel后，就帮你开启了严格模式，用了严格模式之后，页面中的this指向的是undefined,没用严格模式，this指向的是window)
         class Person {
             //构造器方法
             constructor(name,age){
