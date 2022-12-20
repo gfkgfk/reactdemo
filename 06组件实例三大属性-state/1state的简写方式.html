@@ -24,7 +24,10 @@
     <script type="text/babel"> //此处必须写babel-----babel会自动开启严格模式
         //1创建组件
         class Weather extends React.Component {
+            //初始化状态
             state = { isHot: false }
+
+
             constructor(props) {
                 super(props)
                 // this.state = { isHot: false }
@@ -38,11 +41,30 @@
                 return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
             }
 
-            changeWeather () {
+
+            //自定义方法
+            // changeWeather () {
+            //     console.log('changeWeather', this);
+            //     const isHot = this.state.isHot
+            //     this.setState({ isHot: !isHot })
+            // }
+
+            //这样子changeweather属性就放到了实例对象上，不会放到原型对象上了，因为相当于在类中定义了一个变量
+            // changeWeather =function() {
+            //     console.log('changeWeather', this);
+            //     const isHot = this.state.isHot
+            //     this.setState({ isHot: !isHot })
+            // }
+
+
+            //赋值语句+箭头函数
+            changeWeather = ()=> {
                 console.log('changeWeather', this);
                 const isHot = this.state.isHot
                 this.setState({ isHot: !isHot })
             }
+
+
         }
 
         class Car {
