@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state</title>
+    </style>
+</head>
+
+<body>
+    <!-- id为test的容器 -->
+    <div id="test">
+    </div>
+
+    <!-- 引入react核心库-->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel"> //此处必须写babel-----babel会自动开启严格模式
+        //1创建组件
+        class Weather extends React.Component {
+            state = { isHot: false }
+            constructor(props) {
+                super(props)
+                // this.state = { isHot: false }
+                console.log(this);
+                this.changeWeather = this.changeWeather.bind(this)
+
+            }
+
+            render () {
+                const { isHot } = this.state
+                return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
+            }
+
+            changeWeather () {
+                console.log('changeWeather', this);
+                const isHot = this.state.isHot
+                this.setState({ isHot: !isHot })
+            }
+        }
+
+        class Car {
+            constructor(name, price) {
+                this.name = name
+                this.price = price
+                // this.wheel = 4
+
+            }
+            //类中可以直接写赋值语句，如下代码的含义是，给Car的实例对象添加一个属性名为a，值为1
+            a = 1
+            wheel = 4
+
+        }
+        const c1 = new Car();
+        console.log(c1);
+
+
+
+        //2渲染组件到页面
+        ReactDOM.render(<Weather />, document.getElementById('test'))
+
+
+    //  const w = new Weather()
+    //  w.changeWeather()
+
+
+    </script>
+
+</body>
+
+</html>
