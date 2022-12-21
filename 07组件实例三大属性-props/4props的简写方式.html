@@ -28,10 +28,24 @@
         //1创建组件
         class Weather extends React.Component {
 
-            
             constructor(props) {
-                super(props)
+                super(props) //如果要写构造器，则需将props放到super()中传入，若不传会造成构造器中this.props值为undefined
             }
+
+            static propTypes = {
+                // name:React.PropTypes.string //React 15.xxxxx版本
+                // name:PropTypes.string //限制string类型
+                name: PropTypes.string.isRequired, //限制string类型且必传
+                sex: PropTypes.string,
+                age: PropTypes.number,
+                speak: PropTypes.func
+            }
+
+            static defaultProps = {
+                sex: '无',
+                age: 1
+            }
+           
             render () {
                 //props是只读的
                 const { name, age, sex } = this.props
@@ -45,35 +59,23 @@
             }
         }
 
-        Weather.propTypes={
-            // name:React.PropTypes.string //React 15.xxxxx版本
-            // name:PropTypes.string //限制string类型
-            name:PropTypes.string.isRequired, //限制string类型且必传
-            sex:PropTypes.string,
-            age:PropTypes.number,
-            speak:PropTypes.func
-        }
-        Weather.defaultProps={
-            sex:'无',
-            age:1
-        }
 
 
-        function speak(){
+        function speak () {
             console.log('说话');
         }
 
-    
 
-      
+
+
 
         //2渲染组件到页面
         // ReactDOM.render(<Weather name='tom' age={18} sex='男' />, document.getElementById('test')) //注意这里的age，用{}，这样传入的是number
 
         //批量属性
-        const p ={name:'老刘',age:99,sex:'女'}
+        const p = { name: '老刘', age: 99, sex: '女' }
         //这里的{...p}不是复制对象的意思，{}是表示开始写js代码了，里面的...p才是内容，...p是无法复制对象的，这里是react/babel一个语法糖
-        ReactDOM.render(<Weather {...p} speak={speak}/>, document.getElementById('test'))
+        ReactDOM.render(<Weather {...p} speak={speak} />, document.getElementById('test'))
 
 
 

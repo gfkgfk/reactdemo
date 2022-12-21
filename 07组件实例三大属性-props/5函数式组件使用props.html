@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state</title>
+    </style>
+</head>
+
+<body>
+    <!-- id为test的容器 -->
+    <div id="test">
+    </div>
+
+    <!-- 引入react核心库-->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel"> //此处必须写babel-----babel会自动开启严格模式
+        //1创建组件
+        function Person (props) {
+            const {name,age,sex} = props
+            return (
+                <ul>
+                    <li>姓名:{name}</li>
+                    <li>性别:{sex}</li>
+                    <li>年龄:{age}</li>
+                </ul>
+            )
+        }
+
+
+        Person.propTypes={
+            name:PropTypes.string.isRequired,
+        }
+
+
+
+
+        //2渲染组件到页面
+        // ReactDOM.render(<Weather name='tom' age={18} sex='男' />, document.getElementById('test')) //注意这里的age，用{}，这样传入的是number
+
+        //批量属性
+        const p = { name: 99, age: 99, sex: '女' }
+        //这里的{...p}不是复制对象的意思，{}是表示开始写js代码了，里面的...p才是内容，...p是无法复制对象的，这里是react/babel一个语法糖
+        ReactDOM.render(<Person {...p}/>, document.getElementById('test'))
+
+
+
+
+    </script>
+
+</body>
+
+</html>
