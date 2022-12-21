@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调函数形式的ref</title>
+    </style>
+</head>
+
+<body>
+    <!-- id为test的容器 -->
+    <div id="test">
+    </div>
+
+    <!-- 引入react核心库-->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel"> //此处必须写babel-----babel会自动开启严格模式
+        //1创建组件
+        class Demo extends React.Component {
+            // 字符串形式的ref即将淘汰，因为其写多了效率低
+            showData = () => {
+                console.log('showData');
+                const {input1}=this
+                alert(input1.value)
+            }
+            showData2 = () => {
+                console.log('showData2');
+                const {input2}=this
+                alert(input2.value)
+            }
+
+
+            //箭头函数缩写 <input ref={currentNode => this.input1 = currentNode} type='text' placeholder='点击提示数据'></input>
+            render () {
+                return (
+                    <div>
+                        <input ref={(currentNode) => { this.input1 = currentNode }} type='text' placeholder='点击提示数据'></input>
+                        <button ref='button' type="" onClick={this.showData}>点我提示左侧数据</button>
+                        <input ref={(currentNode) => { this.input2 = currentNode }} onBlur={this.showData2} type='text' placeholder='失去焦点提示数据'></input>
+                    </div>
+                )
+            }
+        }
+
+
+
+        //2渲染组件到页面
+        ReactDOM.render(<Demo />, document.getElementById('test'))
+
+
+
+
+    </script>
+
+</body>
+
+</html>
