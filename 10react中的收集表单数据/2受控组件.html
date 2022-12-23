@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>受控组件</title>
+    </style>
+</head>
+
+<body>
+    <!-- id为test的容器 -->
+    <div id="test">
+    </div>
+
+    <!-- 引入react核心库-->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel"> //此处必须写babel-----babel会自动开启严格模式
+        //1创建组件
+        //受控组件:输入类组件，变化时将值维护到状态中，使用时从状态中获取
+        // 尽量写受控组件，可以少写ref
+        class Login extends React.Component {
+            // 初始化状态
+            state = {
+                username: '',
+                password: ''
+            }
+
+            // 保存用户名到状态中
+            saveUsername = (event) => {
+                this.setState({ username: event.target.value })
+            }
+
+
+            // 保存密码到状态中
+            savePassword = (event) => {
+                this.setState({ password: event.target.value })
+            }
+
+            handleSubmit = (event) => {
+                event.preventDefault();//组织表单默认事件-提交事件
+                const {username,password} = this.state
+                alert(`用户名:${username},密码:${password}`)
+            }
+
+
+            render () {
+                return (
+                    <form action="http://www.atguigu.com" onSubmit={this.handleSubmit}>
+                        用户名：<input onChange={this.saveUsername} type="text" name="username"></input>
+                        密码：<input onChange={this.savePassword} type="password" name="password"></input>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+
+        //2渲染组件到页面
+        ReactDOM.render(<Login />, document.getElementById('test'))
+
+
+
+
+    </script>
+
+</body>
+
+</html>
