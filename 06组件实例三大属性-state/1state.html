@@ -23,6 +23,9 @@
 
     <script type="text/babel"> //此处必须写babel-----babel会自动开启严格模式
     //1创建组件
+    // 有状态state的就是复杂组件，无state的是简单组件
+    //组件实例的三大核心属性 1：state  （function的没有，因为function是没有this的，因此也就没有实例，但是新的react里面有个hooks可以让function也可以做到）
+    
      class Weather extends React.Component{
          //构造器调用几次？---执行了一次
          constructor(props){
@@ -40,6 +43,8 @@
          render(){
              const {isHot}=this.state
              return <h1 onClick={this.changeWeather}>今天天气很{isHot?'炎热':'凉爽'}</h1>
+
+             // onClick={this.demo()} 这是一个赋值语句，不能用函数的返回值
             //  return <h1 onClick={this.demo}>今天天气很{isHot?'炎热':'凉爽'}</h1>
          }
 
